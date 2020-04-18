@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class TimeEventHandler : MonoBehaviour
 {
+    public bool nonPlayerHandler = false;
+
     protected virtual void Start()
     {
         TimeController.instance.AddEventHandler(this);    

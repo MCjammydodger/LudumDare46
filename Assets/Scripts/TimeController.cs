@@ -17,6 +17,7 @@ public class TimeController : MonoBehaviour
         }
 
         public int currentEventIndex = 0;
+        public bool nonPlayerObject = false;
     }
 
     public int rewindStepsPerFrame = 4;
@@ -62,8 +63,9 @@ public class TimeController : MonoBehaviour
     {
         eventToAdd.frame = currentFrame;
         eventToAdd.handler = eventHandler;
-        
-        GetTimeEventGameObject(eventHandler.gameObject).timeEvents.Add(eventToAdd);
+        TimeEventGameObject go = GetTimeEventGameObject(eventHandler.gameObject);
+        go.timeEvents.Add(eventToAdd);
+        go.nonPlayerObject = eventHandler.nonPlayerHandler;
     }
 
     public void AddEventHandler(TimeEventHandler eventHandler)
@@ -152,8 +154,11 @@ public class TimeController : MonoBehaviour
             foreach(TimeEventGameObject go in timeEventGameObjects)
             {
                 go.currentEventIndex = 0;
+                if(go.gameObject == PlayerManager.instance.currentVehicle.gameObject || go.nonPlayerObject)
+                {
+                    RemoveFutureEvents(go);
+                }
             }
-            RemoveFutureEvents(GetTimeEventGameObject(PlayerManager.instance.currentVehicle.gameObject));
             PlayerManager.instance.OnResume();
         }
         
@@ -162,7 +167,7 @@ public class TimeController : MonoBehaviour
             PlayEventsAtCurrentForwardFrame();
             foreach (TimeEventHandler handler in timeEventHandlers)
             {
-                if (handler.gameObject == PlayerManager.instance.currentVehicle.gameObject)
+                if (handler.gameObject == PlayerManager.instance.currentVehicle.gameObject || handler.nonPlayerHandler)
                 {
                     // Only add new events to the currently controlled vehicle.
                     handler.UpdateEventHandler();
