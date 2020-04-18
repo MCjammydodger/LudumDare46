@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 1240325033}
   - component: {fileID: 1240325034}
   - component: {fileID: 1240325035}
+  - component: {fileID: 1240325036}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -977,6 +978,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1240325032}
+--- !u!114 &1240325036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240325031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2ffb6921221fc4ba02b1e81a57e1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1240325034}
 --- !u!1 &1273123604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1087,12 @@ MeshFilter:
 --- !u!1 &1396413976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3393273740759304378, guid: c7c5a9868aff3a142aea5f3207b80e35,
+    type: 3}
+  m_PrefabInstance: {fileID: 721597156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1396413978 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3393273740759304379, guid: c7c5a9868aff3a142aea5f3207b80e35,
     type: 3}
   m_PrefabInstance: {fileID: 721597156}
   m_PrefabAsset: {fileID: 0}
@@ -1254,6 +1274,7 @@ GameObject:
   - component: {fileID: 1782812018}
   - component: {fileID: 1782812019}
   - component: {fileID: 1782812020}
+  - component: {fileID: 1782812021}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -1359,6 +1380,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1396413976}
+--- !u!114 &1782812021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782812013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2ffb6921221fc4ba02b1e81a57e1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1396413978}
 --- !u!1 &1928156834
 GameObject:
   m_ObjectHideFlags: 0
