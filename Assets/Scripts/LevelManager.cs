@@ -7,7 +7,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public GameObject openingCinematic;
     public Camera mainCam;
-    
+
+    public bool skipOpeningCinematic;
 
     private void Awake()
     {
@@ -16,8 +17,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        TimeController.instance.PauseGameTime();
-        mainCam.gameObject.SetActive(false);
+        if (skipOpeningCinematic)
+        {
+            OpeningFinished();
+        }
+        else
+        {
+            TimeController.instance.PauseGameTime();
+            mainCam.gameObject.SetActive(false);
+        }
     }
 
     public void OpeningFinished()

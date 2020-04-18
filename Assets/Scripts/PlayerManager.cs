@@ -28,14 +28,19 @@ public class PlayerManager : MonoBehaviour
     {
         if(Input.GetButtonUp("Switch") && TimeController.instance.InRewindMode())
         {
-            currentVehicleIndex += 1;
-            if(currentVehicleIndex >= vehicles.Length)
-            {
-                currentVehicleIndex = 0;
-            }
-            currentVehicle = vehicles[currentVehicleIndex];
-            cameraController.target = currentVehicle.transform;
+            //SwitchToNextVehicle();
         }
+    }
+
+    public void SwitchToNextVehicle()
+    {
+        currentVehicleIndex += 1;
+        if (currentVehicleIndex >= vehicles.Length)
+        {
+            currentVehicleIndex = 0;
+        }
+        currentVehicle = vehicles[currentVehicleIndex];
+        cameraController.target = currentVehicle.transform;
     }
 
     public void OnPause()
