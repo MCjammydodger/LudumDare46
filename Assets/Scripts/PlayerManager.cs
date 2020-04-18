@@ -39,10 +39,18 @@ public class PlayerManager : MonoBehaviour
         {
             currentVehicleIndex = 0;
         }
-        currentVehicle = vehicles[currentVehicleIndex];
-        cameraController.target = currentVehicle.transform;
+        SwitchToVehicle(currentVehicleIndex);
     }
 
+    public void SwitchToVehicle(int vehicleID)
+    {
+        currentVehicleIndex = vehicleID;
+        currentVehicle.OnPause();
+        currentVehicle = vehicles[currentVehicleIndex];
+        cameraController.target = currentVehicle.transform;
+        TimeController.instance.RemoveFutureEvents(TimeController.instance.GetTimeEventGameObject(currentVehicle.gameObject));
+        currentVehicle.OnResume();
+    }
     public void OnPause()
     {
         foreach(PlayerMovement vehicle in vehicles)

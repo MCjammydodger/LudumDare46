@@ -11,6 +11,6 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         transform.position = target.position + offsetFromTarget;
-        transform.LookAt(target);
+        //transform.LookAt(target);
     }
 }

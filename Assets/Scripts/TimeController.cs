@@ -6,7 +6,7 @@ using TMPro;
 public class TimeController : MonoBehaviour
 {
     [System.Serializable]
-    private class TimeEventGameObject
+    public class TimeEventGameObject
     {
         public List<TimeEvent> timeEvents;
         public GameObject gameObject;
@@ -41,7 +41,7 @@ public class TimeController : MonoBehaviour
         timeEventHandlers = new List<TimeEventHandler>();
     }
 
-    private TimeEventGameObject GetTimeEventGameObject(GameObject gameObject)
+    public TimeEventGameObject GetTimeEventGameObject(GameObject gameObject)
     {
         TimeEventGameObject timeEventGameObject = null;
 
@@ -105,7 +105,7 @@ public class TimeController : MonoBehaviour
         }
     }
 
-    private void RemoveFutureEvents(TimeEventGameObject go)
+    public void RemoveFutureEvents(TimeEventGameObject go)
     {  
         for(int i = go.timeEvents.Count - 1; i >= 0; i--)
         {
@@ -189,6 +189,11 @@ public class TimeController : MonoBehaviour
 
             currentFrame += 1;
         }
+    }
+
+    public void RemoveAllTimelines()
+    {
+        timeEventGameObjects.Clear();
     }
 
     public void PauseGameTime()

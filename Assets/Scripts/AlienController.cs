@@ -10,6 +10,18 @@ public class AlienController : MonoBehaviour
 
     public float currentTimeLeft = 20;
 
+    public static AlienController instance;
+
+    public TutorialTrigger alienTutorial;
+
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        instance = this;
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
         currentTimeLeft = startTimeLeft;
@@ -21,6 +33,7 @@ public class AlienController : MonoBehaviour
         UpdateTimeLeftText();
         if(currentTimeLeft <= 0)
         {
+            alienTutorial.ActivateTutorial();
             TimeController.instance.EnterRewindMode();
         }
         UpdateTimeLeftText();
@@ -29,5 +42,11 @@ public class AlienController : MonoBehaviour
     public void UpdateTimeLeftText()
     {
         timeLeftText.text = currentTimeLeft.ToString();
+    }
+
+    public void ResetRB()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
