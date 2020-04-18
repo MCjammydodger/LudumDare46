@@ -12,17 +12,16 @@ public abstract class PlayerMovement : MonoBehaviour
     protected Vector3 desiredDirection;
     protected float desiredSpeed;
 
-    private Camera cam;
+    public Camera cam;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        cam = Camera.main;
     }
 
     private void Update()
     {
-        if (PlayerManager.instance.currentVehicle == this)
+        if (PlayerManager.instance.currentVehicle == this && !TimeController.instance.IsGameTimePaused())
         {
             desiredDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
             desiredSpeed = Mathf.Abs(desiredDirection.magnitude);

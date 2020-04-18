@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Destructable : MonoBehaviour
 {
+    public GameObject intact;
+    public GameObject destroyed;
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.GetComponent<Projectile>() != null)
         {
-            gameObject.SetActive(false);
+            intact.SetActive(false);
+            destroyed.SetActive(true);
         }
     }
 }

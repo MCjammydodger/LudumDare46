@@ -12,12 +12,11 @@ public class PlayerTurret : MonoBehaviour
     public Transform barrel;
 
     private float timeSinceShot;
-    private Camera cam;
+    public Camera cam;
     private Vector3 targetPoint;
 
     private void Start()
     {
-        cam = Camera.main;
         timeSinceShot = reloadTime;
     }
     private void OnGUI()

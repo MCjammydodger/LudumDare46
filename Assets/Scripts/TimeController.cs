@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TimeController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class TimeController : MonoBehaviour
     }
 
     public int rewindStepsPerFrame = 4;
+    public TextMeshProUGUI rewindText;
 
     private List<TimeEventGameObject> timeEventGameObjects;
     private List<TimeEventHandler> timeEventHandlers;
@@ -116,6 +118,7 @@ public class TimeController : MonoBehaviour
 
     public void EnterRewindMode()
     {
+        rewindText.text = "<<";
         if (!inRewindMode)
         {
             PauseGameTime();
@@ -145,6 +148,10 @@ public class TimeController : MonoBehaviour
 
     public void Update()
     {
+        if(inRewindMode)
+        {
+            rewindText.text = "II";
+        }
 
         if(Input.GetButton("Rewind"))
         {
@@ -169,6 +176,7 @@ public class TimeController : MonoBehaviour
         
         if(!IsGameTimePaused())
         {
+            rewindText.text = "";
             PlayEventsAtCurrentForwardFrame();
             foreach (TimeEventHandler handler in timeEventHandlers)
             {
