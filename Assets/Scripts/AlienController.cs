@@ -18,6 +18,7 @@ public class AlienController : MonoBehaviour
     private void Update()
     {
         currentTimeLeft -= Time.deltaTime;
+        UpdateTimeLeftText();
         if(currentTimeLeft <= 0)
         {
             TimeController.instance.EnterRewindMode();
