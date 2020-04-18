@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class TimeEventHandler : MonoBehaviour
 {
-    private void Start()
+    protected virtual void Start()
     {
         TimeController.instance.AddEventHandler(this);    
     }
 
     public abstract void UpdateEventHandler();
 
-    public abstract void ApplyEvent(TimeEvent timeEvent);
+    public abstract void ApplyEvent(TimeEvent timeEvent, bool reverse);
 }
 
 [System.Serializable]
@@ -20,8 +20,8 @@ public class TimeEvent
     public int frame;
     public TimeEventHandler handler;
 
-    public void ApplyEvent()
+    public void ApplyEvent(bool reverse)
     {
-        handler.ApplyEvent(this);
+        handler.ApplyEvent(this, reverse);
     }
 }

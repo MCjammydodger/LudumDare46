@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class TransformEventHandler : TimeEventHandler
 {
-    public override void ApplyEvent(TimeEvent timeEvent)
+    public Transform target;
+
+    public override void ApplyEvent(TimeEvent timeEvent, bool reverse)
     {
         TransformEvent newEvent = (TransformEvent)timeEvent;
-        transform.position = newEvent.position;
-        transform.rotation = newEvent.rotation;
+        target.position = newEvent.position;
+        target.rotation = newEvent.rotation;
     }
 
     public override void UpdateEventHandler()
     {
         TransformEvent newEvent = new TransformEvent();
-        newEvent.position = transform.position;
-        newEvent.rotation = transform.rotation;
+        newEvent.position = target.position;
+        newEvent.rotation = target.rotation;
         TimeController.instance.AddEvent(newEvent, this);
     }
 }

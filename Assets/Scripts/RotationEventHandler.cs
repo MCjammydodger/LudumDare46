@@ -6,7 +6,7 @@ public class RotationEventHandler : TimeEventHandler
 {
     public Transform target;
 
-    public override void ApplyEvent(TimeEvent timeEvent)
+    public override void ApplyEvent(TimeEvent timeEvent, bool reverse)
     {
         RotationEvent newEvent = (RotationEvent)timeEvent;
         target.rotation = newEvent.rotation;

@@ -79,7 +79,7 @@ public class TimeController : MonoBehaviour
             {
                 if (go.timeEvents[go.currentEventIndex].frame == rewindModeFrame)
                 {
-                    go.timeEvents[go.currentEventIndex].ApplyEvent();
+                    go.timeEvents[go.currentEventIndex].ApplyEvent(true);
                 }
                 go.currentEventIndex -= 1;
             }
@@ -94,7 +94,7 @@ public class TimeController : MonoBehaviour
             {
                 if (go.timeEvents[go.currentEventIndex].frame == currentFrame)
                 {
-                    go.timeEvents[go.currentEventIndex].ApplyEvent();
+                    go.timeEvents[go.currentEventIndex].ApplyEvent(false);
                 }
                 go.currentEventIndex += 1;
             }
