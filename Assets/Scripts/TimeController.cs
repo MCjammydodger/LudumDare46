@@ -114,36 +114,41 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    public void EnterRewindMode()
+    {
+        if (!inRewindMode)
+        {
+            PauseGameTime();
+            inRewindMode = true;
+            rewindModeFrame = currentFrame;
+            foreach (TimeEventGameObject go in timeEventGameObjects)
+            {
+                go.currentEventIndex = go.timeEvents.Count - 1;
+            }
+            PlayerManager.instance.OnPause();
+            PlayEventsAtCurrentRewindFrame();
+        }
+        else
+        {
+            for (int i = 0; i < rewindStepsPerFrame; i++)
+            {
+                rewindModeFrame = rewindModeFrame - 1;
+                if (rewindModeFrame < 0)
+                {
+                    rewindModeFrame = 0;
+                    break;
+                }
+                PlayEventsAtCurrentRewindFrame();
+            }
+        }
+    }
+
     public void Update()
     {
 
         if(Input.GetButton("Rewind"))
         {
-            if (!inRewindMode)
-            {
-                PauseGameTime();
-                inRewindMode = true;
-                rewindModeFrame = currentFrame;
-                foreach (TimeEventGameObject go in timeEventGameObjects)
-                {
-                    go.currentEventIndex = go.timeEvents.Count - 1;
-                }
-                PlayerManager.instance.OnPause();
-                PlayEventsAtCurrentRewindFrame();
-            }
-            else
-            {
-                for (int i = 0; i < rewindStepsPerFrame; i++)
-                {
-                    rewindModeFrame = rewindModeFrame - 1;
-                    if(rewindModeFrame < 0)
-                    {
-                        rewindModeFrame = 0;
-                        break;
-                    }
-                    PlayEventsAtCurrentRewindFrame();
-                }
-            }
+            EnterRewindMode();
         }
 
         if(inRewindMode && Input.GetButtonUp("Submit"))
