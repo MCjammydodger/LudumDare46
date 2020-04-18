@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TruckMovement : PlayerMovement
+public class TankMovement : PlayerMovement
 {
     protected override void ApplyMovement(Vector3 desiredDirection)
     {
@@ -21,14 +21,14 @@ public class TruckMovement : PlayerMovement
                 float direction = angleDifference / Mathf.Abs(angleDifference);
                 transform.Rotate(Vector3.up, turnSpeed * direction * Time.deltaTime);
             }
-            Debug.DrawRay(transform.position, desiredDirection, Color.blue);
-            Debug.DrawRay(transform.position, transform.right, Color.red);
-
         }
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(transform.forward * desiredSpeed * speed, ForceMode.VelocityChange);
+        if (desiredDirection == transform.forward)
+        {
+            rb.AddForce(transform.forward * desiredSpeed * speed, ForceMode.VelocityChange);
+        }
     }
 }

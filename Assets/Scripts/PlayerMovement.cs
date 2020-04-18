@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class PlayerMovement : MonoBehaviour
 {
     public float speed = 10.0f;
+    public float turnSpeed = 2.0f;
 
     protected Rigidbody rb;
 
