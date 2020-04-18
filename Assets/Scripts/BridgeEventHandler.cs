@@ -9,14 +9,16 @@ public class BridgeEventHandler : TimeEventHandler
     public override void ApplyEvent(TimeEvent timeEvent, bool reverse)
     {
         BridgeEvent newEvent = (BridgeEvent)timeEvent;
+        bridge.activated = newEvent.activated;
         bridge.lerpValue = newEvent.lerpValue;
     }
 
     public override void UpdateEventHandler()
     {
-        if(bridge.IsActivated() && bridge.lerpValue < 1.2f)
+        if(bridge.lerpValue < 1.2f)
         {
             BridgeEvent newEvent = new BridgeEvent();
+            newEvent.activated = bridge.IsActivated();
             newEvent.lerpValue = bridge.lerpValue;
             TimeController.instance.AddEvent(newEvent, this);
         }
@@ -25,5 +27,6 @@ public class BridgeEventHandler : TimeEventHandler
 
 public class BridgeEvent : TimeEvent
 {
+    public bool activated;
     public float lerpValue;
 }

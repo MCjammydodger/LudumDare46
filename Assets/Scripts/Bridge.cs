@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-    private bool activated = false;
+    public bool activated = false;
 
     public Vector3 targetPosition;
 
