@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SwitchPad : MonoBehaviour
 {
     private List<PlayerMovement> vehiclesOnPad;
-
+    public TextMeshProUGUI keyhint;
     private void Start()
     {
         vehiclesOnPad = new List<PlayerMovement>();
@@ -30,6 +31,10 @@ public class SwitchPad : MonoBehaviour
         {
             if(vehiclesOnPad.Contains(playerMovement))
             {
+                if(PlayerManager.instance.currentVehicle == playerMovement)
+                {
+                    keyhint.text = "";
+                }
                 vehiclesOnPad.Remove(playerMovement);
             }
         }
@@ -37,9 +42,14 @@ public class SwitchPad : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonUp("Switch") && !TimeController.instance.IsGameTimePaused() && vehiclesOnPad.Contains(PlayerManager.instance.currentVehicle))
+        if (!TimeController.instance.IsGameTimePaused() && vehiclesOnPad.Contains(PlayerManager.instance.currentVehicle))
         {
-            PlayerManager.instance.SwitchToNextVehicle();
+            keyhint.text = "Press E to switch vehicle.";
+            if (Input.GetButtonUp("Switch"))
+            {
+                keyhint.text = "";
+                PlayerManager.instance.SwitchToNextVehicle();
+            }
         }
     }
 }

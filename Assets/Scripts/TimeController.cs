@@ -33,7 +33,7 @@ public class TimeController : MonoBehaviour
 
     private bool inRewindMode = false;
     public static TimeController instance;
-
+    public TextMeshProUGUI keyhint;
     private void Awake()
     {
         instance = this;
@@ -121,6 +121,7 @@ public class TimeController : MonoBehaviour
         rewindText.text = "<<";
         if (!inRewindMode)
         {
+            keyhint.text = "Press SPACE to resume time.";
             PauseGameTime();
             inRewindMode = true;
             rewindModeFrame = currentFrame;
@@ -160,6 +161,7 @@ public class TimeController : MonoBehaviour
 
         if(inRewindMode && Input.GetButtonUp("Submit"))
         {
+            keyhint.text = "";
             ResumeGameTime();
             inRewindMode = false;
             currentFrame = rewindModeFrame;

@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public GameObject openingCinematic;
     public Camera mainCam;
     public TutorialTrigger introTutorial;
+    public GameObject gameUI;
 
     public bool skipOpeningCinematic;
 
@@ -26,6 +27,7 @@ public class LevelManager : MonoBehaviour
         {
             TimeController.instance.PauseGameTime();
             mainCam.gameObject.SetActive(false);
+            gameUI.SetActive(false);
         }
     }
 
@@ -33,6 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         openingCinematic.SetActive(false);
         mainCam.gameObject.SetActive(true);
+        gameUI.SetActive(true);
         TimeController.instance.ResumeGameTime();
         introTutorial.ActivateTutorial();
     }

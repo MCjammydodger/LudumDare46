@@ -7,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
+    public GameObject gameUI;
 
     public static TutorialManager instance;
 
@@ -19,6 +20,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.text = text;
         tutorialPanel.SetActive(true);
+        gameUI.SetActive(false);
         TimeController.instance.PauseGameTime();
     }
 
@@ -26,6 +28,7 @@ public class TutorialManager : MonoBehaviour
     {
         if(tutorialPanel.activeSelf && Input.GetButtonUp("Submit"))
         {
+            gameUI.SetActive(true);
             tutorialPanel.SetActive(false);
             TimeController.instance.ResumeGameTime();
         }

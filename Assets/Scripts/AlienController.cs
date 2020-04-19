@@ -33,6 +33,7 @@ public class AlienController : MonoBehaviour
         UpdateTimeLeftText();
         if(currentTimeLeft <= 0)
         {
+            timeLeftText.text = "Alien Died!";
             alienTutorial.ActivateTutorial();
             TimeController.instance.EnterRewindMode();
         }
@@ -41,7 +42,7 @@ public class AlienController : MonoBehaviour
 
     public void UpdateTimeLeftText()
     {
-        timeLeftText.text = currentTimeLeft.ToString();
+        timeLeftText.text = ((int)currentTimeLeft).ToString();
     }
 
     public void ResetRB()
