@@ -36,16 +36,22 @@ public abstract class PlayerMovement : MonoBehaviour
 
     public void OnPause()
     {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.isKinematic = true;
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
     }
 
     public void OnResume()
     {
         if(PlayerManager.instance.currentVehicle == this)
         {
-            rb.isKinematic = false;
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public GameObject gameUI;
 
     public bool skipOpeningCinematic;
+    public Checkpoint debugStartCheckpoint;
 
     private void Awake()
     {
@@ -22,6 +23,10 @@ public class LevelManager : MonoBehaviour
         if (skipOpeningCinematic)
         {
             OpeningFinished();
+            if(debugStartCheckpoint != null)
+            {
+                debugStartCheckpoint.ActivateCheckpoint();
+            }
         }
         else
         {
