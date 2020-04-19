@@ -27,7 +27,7 @@ public class TimeController : MonoBehaviour
     private List<TimeEventGameObject> timeEventGameObjects;
     private List<TimeEventHandler> timeEventHandlers;
 
-    private int currentFrame = 0;
+    public int currentFrame = 0;
     private int rewindModeFrame = 0;
 
 

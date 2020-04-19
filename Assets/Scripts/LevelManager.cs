@@ -51,10 +51,11 @@ public class LevelManager : MonoBehaviour
 
     public void GameFinished()
     {
-        TimeController.instance.PauseGameTime();
-        mainCam.gameObject.SetActive(false);
-        gameUI.SetActive(false);
-        endingCinematic.SetActive(true);
+        //TimeController.instance.PauseGameTime();
+        //mainCam.gameObject.SetActive(false);
+        //gameUI.SetActive(false);
+        //endingCinematic.SetActive(true);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void ShowMenu()
