@@ -34,6 +34,8 @@ public class TimeController : MonoBehaviour
     private bool inRewindMode = false;
     public static TimeController instance;
     public TextMeshProUGUI keyhint;
+    public TextMeshProUGUI keyhint2;
+
     private void Awake()
     {
         instance = this;
@@ -122,6 +124,7 @@ public class TimeController : MonoBehaviour
         if (!inRewindMode)
         {
             keyhint.text = "Press SPACE to resume time.";
+            keyhint2.text = "Hold Q to rewind.";
             PauseGameTime();
             inRewindMode = true;
             rewindModeFrame = currentFrame;
@@ -130,7 +133,7 @@ public class TimeController : MonoBehaviour
                 go.currentEventIndex = go.timeEvents.Count - 1;
             }
             PlayerManager.instance.OnPause();
-            PlayEventsAtCurrentRewindFrame();
+            //PlayEventsAtCurrentRewindFrame();
         }
         else
         {
@@ -162,6 +165,7 @@ public class TimeController : MonoBehaviour
         if(inRewindMode && Input.GetButtonUp("Submit"))
         {
             keyhint.text = "";
+            keyhint2.text = "";
             ResumeGameTime();
             inRewindMode = false;
             currentFrame = rewindModeFrame;
@@ -175,8 +179,29 @@ public class TimeController : MonoBehaviour
             }
             PlayerManager.instance.OnResume();
         }
-        
-        if(!IsGameTimePaused())
+        else if(inRewindMode && Input.GetButtonUp("Reset"))
+        {
+            //for (int i = rewindModeFrame; i >= 0; i--)
+            //{
+            //    rewindModeFrame = rewindModeFrame - 1;
+            //    if (rewindModeFrame < 0)
+            //    {
+            //        rewindModeFrame = 0;
+            //        break;
+            //    }
+            //    PlayEventsAtCurrentRewindFrame();
+            //}
+            //RemoveAllTimelines();
+            //keyhint.text = "";
+            //keyhint2.text = "";
+            //ResumeGameTime();
+            //inRewindMode = false;
+            //PlayerManager.instance.SwitchToVehicle(0);
+            //PlayerManager.instance.OnResume();
+
+        }
+
+        if (!IsGameTimePaused())
         {
             rewindText.text = "";
             PlayEventsAtCurrentForwardFrame();

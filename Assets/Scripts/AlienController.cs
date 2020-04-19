@@ -30,19 +30,21 @@ public class AlienController : MonoBehaviour
     private void Update()
     {
         currentTimeLeft -= Time.deltaTime;
-        UpdateTimeLeftText();
-        if(currentTimeLeft <= 0)
+        if (currentTimeLeft <= 0 && !TimeController.instance.IsGameTimePaused())
         {
             timeLeftText.text = "Alien Died!";
             alienTutorial.ActivateTutorial();
             TimeController.instance.EnterRewindMode();
         }
-        UpdateTimeLeftText();
+        else if(!TimeController.instance.IsGameTimePaused())
+        {
+            UpdateTimeLeftText();
+        }
     }
 
     public void UpdateTimeLeftText()
     {
-        timeLeftText.text = ((int)currentTimeLeft).ToString();
+        timeLeftText.text = Mathf.RoundToInt(currentTimeLeft).ToString();
     }
 
     public void ResetRB()

@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public Camera mainCam;
     public TutorialTrigger introTutorial;
     public GameObject gameUI;
-    public GameObject endingCinematic;
+    public GameObject endScreen;
 
     public bool skipOpeningCinematic;
     public Checkpoint debugStartCheckpoint;
@@ -39,6 +39,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(endScreen.activeSelf && Input.GetButtonUp("Submit"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+    }
+
     public void OpeningFinished()
     {
         startMenu.SetActive(false);
@@ -51,11 +59,9 @@ public class LevelManager : MonoBehaviour
 
     public void GameFinished()
     {
-        //TimeController.instance.PauseGameTime();
-        //mainCam.gameObject.SetActive(false);
-        //gameUI.SetActive(false);
-        //endingCinematic.SetActive(true);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        TimeController.instance.PauseGameTime();
+        gameUI.SetActive(false);
+        endScreen.SetActive(true);
     }
 
     public void ShowMenu()

@@ -29,6 +29,6 @@ public class TruckMovement : PlayerMovement
 
     private void FixedUpdate()
     {
-        rb.AddForce(transform.forward * desiredSpeed * speed, ForceMode.VelocityChange);
+        rb.AddForce(desiredDirection * desiredSpeed * speed, ForceMode.VelocityChange);
     }
 }

@@ -17,7 +17,6 @@ public class SetActiveEventHandler : TimeEventHandler
     public override void ApplyEvent(TimeEvent timeEvent, bool reverse)
     {
         SetActiveEvent newEvent = (SetActiveEvent)timeEvent;
-        Debug.Log("NAME: " + target.name + "; ApplyEvent. Reverse: " + reverse + " event active: " + newEvent.activate + ", current: " + target.activeSelf + " frame: "+ newEvent.frame);
         if(reverse)
         {
             target.SetActive(!newEvent.activate);
@@ -33,7 +32,6 @@ public class SetActiveEventHandler : TimeEventHandler
     {
         if(target.activeSelf != lastActive)
         {
-            Debug.Log("NAME: " + target.name + "; UpdateEventHandler. Active: " + target.activeSelf + " frame: "+ TimeController.instance.currentFrame);
             lastActive = target.activeSelf;
             SetActiveEvent newEvent = new SetActiveEvent();
             newEvent.activate = target.activeSelf;

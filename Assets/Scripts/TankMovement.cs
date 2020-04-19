@@ -26,9 +26,9 @@ public class TankMovement : PlayerMovement
 
     private void FixedUpdate()
     {
-        if (desiredDirection == transform.forward)
-        {
-            rb.AddForce(transform.forward * desiredSpeed * speed, ForceMode.VelocityChange);
-        }
+        //if (desiredDirection == transform.forward)
+        //{
+            rb.AddForce(desiredDirection * desiredSpeed * speed, ForceMode.VelocityChange);
+        //}
     }
 }

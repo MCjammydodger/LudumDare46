@@ -7,6 +7,10 @@ public class SwitchPad : MonoBehaviour
 {
     private List<PlayerMovement> vehiclesOnPad;
     public TextMeshProUGUI keyhint;
+    public TutorialTrigger rewindTutorial2;
+
+    private static bool switchedThisFrame = false;
+
     private void Start()
     {
         vehiclesOnPad = new List<PlayerMovement>();
@@ -45,11 +49,21 @@ public class SwitchPad : MonoBehaviour
         if (!TimeController.instance.IsGameTimePaused() && vehiclesOnPad.Contains(PlayerManager.instance.currentVehicle))
         {
             keyhint.text = "Press E to switch vehicle.";
-            if (Input.GetButtonUp("Switch"))
+            if (Input.GetButtonUp("Switch") && !switchedThisFrame)
             {
+                switchedThisFrame = true;
                 keyhint.text = "";
+                if (rewindTutorial2 != null)
+                {
+                    rewindTutorial2.ActivateTutorial();
+                }
                 PlayerManager.instance.SwitchToNextVehicle();
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        switchedThisFrame = false;
     }
 }
